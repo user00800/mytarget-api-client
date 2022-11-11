@@ -21,12 +21,13 @@ class RemarketingCounters extends Resource
 {
     /**
      * Запрос возвращает список всех счетчиков, добавленных пользователем в источники данных
-     * @param array $filters
+     * @param array  $filters
+     * @param string $pathSuffix
      * @return mixed
      */
-    public function get(array $filters = [])
+    public function get(array $filters = [], string $pathSuffix = ".json")
     {
-        return $this->request('get', 'remarketing/counters', ['query' => $filters]);
+        return $this->request('get', 'remarketing/counters', ['query' => $filters], $pathSuffix);
     }
 
     /**
