@@ -1459,6 +1459,7 @@ final class Client
             'http_errors' => false,
             'base_uri' => $baseUri,
             'debug' => @$config['debug'],
+            'connection_timeout' => (int)@$config['connection_timeout'],
             'timeout' => (int)@$config['timeout'],
             'delay' => (int)@$config['delay']
         ]);
