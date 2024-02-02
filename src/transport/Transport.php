@@ -10,6 +10,7 @@ namespace kradwhite\myTarget\api\transport;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\TransferException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Transport
@@ -24,10 +25,7 @@ class Transport implements TransportInterface
     private $client;
 
     /** @var */
-    private $lastResponseCode;
-
-    /** @var array */
-    private $lastResponseHeaders;
+    private $lastResponse;
 
     /**
      * Transport constructor.
@@ -51,8 +49,7 @@ class Transport implements TransportInterface
     public function request(string $method, string $path, array $options = [], string $pathSuffix = ".json")
     {
         $response = $this->client->request($method, $path . $pathSuffix, $options);
-        $this->lastResponseCode = $response->getStatusCode();
-        $this->lastResponseHeaders = $response->getHeaders();
+        $this->lastResponse = $response;
         if ($response->getStatusCode() > 499) {
             throw new TransferException($response->getReasonPhrase(), $response->getStatusCode());
         }
@@ -60,20 +57,12 @@ class Transport implements TransportInterface
         $result = json_decode($json, $this->config['assoc']);
         return json_last_error() ? $json : $result;
     }
-
+    
     /**
-     * @return int
+     * @return ResponseInterface|null
      */
-    public function getLastResponseCode(): int
+    public function getLastResponse(): ?ResponseInterface
     {
-        return $this->lastResponseCode;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLastResponseHeaders(): array
-    {
-        return $this->lastResponseHeaders;
+        return $this->lastResponse ?? null;
     }
 }
