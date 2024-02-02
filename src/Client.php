@@ -131,6 +131,7 @@ use kradwhite\myTarget\api\resources\users\ReservedAmounts;
 use kradwhite\myTarget\api\resources\users\User;
 use kradwhite\myTarget\api\transport\Transport;
 use kradwhite\myTarget\api\transport\TransportInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class api
@@ -158,19 +159,11 @@ final class Client
     }
 
     /**
-     * @return int
+     * @return ResponseInterface|null
      */
-    public function getLastResponseCode(): int
+    public function getLastResponse(): ?ResponseInterface
     {
-        return $this->transport->getLastResponseCode();
-    }
-
-    /**
-     * @return array
-     */
-    public function getLastResponseHeaders(): array
-    {
-        return $this->transport->getLastResponseHeaders();
+        return $this->transport->getLastResponse();
     }
 
     /**
