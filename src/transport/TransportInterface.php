@@ -8,6 +8,7 @@
 namespace kradwhite\myTarget\api\transport;
 
 use GuzzleHttp\Client;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class TransportInterface
@@ -32,12 +33,7 @@ interface TransportInterface
     public function request(string $method, string $path, array $options = [], string $pathSuffix = "");
 
     /**
-     * @return int
+     * @return ResponseInterface
      */
-    public function getLastResponseCode(): int;
-
-    /**
-     * @return array
-     */
-    public function getLastResponseHeaders(): array;
+    public function getLastResponse(): ResponseInterface;
 }
