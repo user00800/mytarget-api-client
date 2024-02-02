@@ -159,9 +159,9 @@ final class Client
     }
 
     /**
-     * @return ResponseInterface|null
+     * @return ResponseInterface
      */
-    public function getLastResponse(): ?ResponseInterface
+    public function getLastResponse(): ResponseInterface
     {
         return $this->transport->getLastResponse();
     }
