@@ -59,10 +59,10 @@ class Transport implements TransportInterface
     }
     
     /**
-     * @return ResponseInterface|null
+     * @return ResponseInterface
      */
-    public function getLastResponse(): ?ResponseInterface
+    public function getLastResponse(): ResponseInterface
     {
-        return $this->lastResponse ?? null;
+        return $this->lastResponse;
     }
 }
