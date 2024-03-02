@@ -33,7 +33,7 @@ interface TransportInterface
     public function request(string $method, string $path, array $options = [], string $pathSuffix = "");
 
     /**
-     * @return ResponseInterface
+     * @return ResponseInterface|null
      */
-    public function getLastResponse(): ResponseInterface;
+    public function getLastResponse(): ?ResponseInterface;
 }
