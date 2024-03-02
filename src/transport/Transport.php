@@ -25,7 +25,7 @@ class Transport implements TransportInterface
     private $client;
 
     /** @var */
-    private $lastResponse;
+    private $lastResponse = null;
 
     /**
      * Transport constructor.
@@ -59,9 +59,9 @@ class Transport implements TransportInterface
     }
     
     /**
-     * @return ResponseInterface
+     * @return ResponseInterface|null
      */
-    public function getLastResponse(): ResponseInterface
+    public function getLastResponse(): ?ResponseInterface
     {
         return $this->lastResponse;
     }
